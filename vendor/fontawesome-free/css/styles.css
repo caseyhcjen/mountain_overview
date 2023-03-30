@@ -1,0 +1,10 @@
+.div {
+    border: 1px solid black;
+    background-color: lightblue;
+  }
+
+.flex_container {
+    border:solid 5px rgb(216, 30, 30);
+    height:950px;
+    margin:2%;
+}

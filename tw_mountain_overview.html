@@ -1,0 +1,320 @@
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>台灣百岳紀錄</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link rel="stylesheet" href="css/sb-admin-2.min.css" >
+  <link rel="stylesheet" type="text/css" href="css/page_update.css">
+  <link rel="stylesheet" href="./humanity/jquery-ui.css">
+  <link rel="stylesheet" href="./humanity/theme.css">
+<body>
+<div id="wrapper">
+  <!--<h2>CSS Padding</h2>
+  <div>This element has a padding of 70px.</div>-->
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-text mx-3">台灣百岳紀錄</div>
+      </a>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">      
+      <div id="get_DATE"></div>
+      <!-- Divider -->
+      <br>
+      <hr class="sidebar-divider my-0">      
+      <label style="color:rgb(215, 228, 240);" for="name_combobox">台灣山岳位置</label> 
+      <select id="name_combobox" onchange="get_chart_wlocation(this)">
+          <option value="Top 20">Top 20</option>
+          <option value="南投信義">南投信義</option>
+      </select>
+    <!--</div>-->
+      <!--<button type="button" class="btn btn-secondary" onclick="myFunction()">Secondary</button>-->
+    </ul>
+    <!-- End of Sidebar -->
+
+
+  <!-- Right Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->    
+    <div id="content">
+
+        <!-- Topbar -->
+  
+        <!-- End of Topbar -->
+  
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+  
+          <!-- Page Heading 
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">行腳紀錄</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+              class="fas fa-sm text-white-50"></i> Report</a>
+          </div>-->
+
+          <!-- Content Row #Chart-->
+          <div class="row">  
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">台灣山岳Overview
+                    <!--<p id="chart_p">A Paragraph</p>-->
+                    <label id="chart_lbl"></label>
+                  </h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                          aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div id ="myAreaChartDiv" class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+
+          <!-- Content Row #Milestone-->
+          <div class="row">
+            <!-- Content Column -->
+            <div class="col-lg-12 mb-4">
+  
+              <!-- Milestone Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Milestone</h6>
+                </div>
+                <div class="card-body">
+                  <h4 class="small font-weight-bold">秀姑巒山 <span
+                    class="float-right">20%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
+                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">池有山 <span
+                    class="float-right">40%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">桃山 <span
+                    class="float-right">60%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar" role="progressbar" style="width: 60%"
+                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">達芬尖山 
+                    <span class="float-right">Complete!</span></h4>
+                  <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Milestone cont -->
+              <div class="row">
+              </div>  
+            </div>            
+          </div>
+
+
+  
+        </div>
+        <!-- /.container-fluid -->
+  
+      </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; 行腳日記 2023</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+
+
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+
+<!-- Page level plugins 
+<script src="vendor/chart.js/Chart.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+
+<!--Calendar-->
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+      //Run calendar
+      $(function () {
+          $("#get_DATE").datepicker({ dateFormat: 'yy/mm/dd' });
+      });
+</script>
+
+<script>
+  function getUnique(obj) {
+  //update to unique 
+  let ary = Object.keys(obj).map(key => obj[key]);
+  const uniqueitem = Array.from(new Set(ary));
+  return uniqueitem;
+  }
+
+  function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        //parse json file
+        var complexObject = this.responseText
+        const obj = JSON.parse(complexObject);    
+        localStorage.setItem('mountain-complex-object', JSON.stringify(complexObject));
+        uniqueitem = getUnique(obj.location);    
+        //update element option 
+        selElmnt = document.getElementById("name_combobox");
+        // Optional: Clear all existing options first:
+        selElmnt.innerHTML = "";
+        // Populate list with options:
+        selElmnt.innerHTML += "<option value=\"" + "Top 20" + "\">" + "Top 20" + "</option>";
+        for(var i = 0; i < uniqueitem.length; i++) {
+            var opt = uniqueitem[i];
+            selElmnt.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+            //selElmnt.options[0].innerHTML = obj.name[1];
+        }
+      }
+    };
+    xhttp.open("GET", "https://github.com/caseyhcjen/mountain_overview/blob/master/tw_mountain_all.json", true);
+    xhttp.send();
+  }    
+
+  // Update loaded json file & used as chart data
+  // filter location to its specified mountain name & height
+  function get_location_data(val_loc) {
+      // used to save selected value index
+      var data = {
+          indexes: []
+      };
+      // get saved mountain data & parse to array 
+      var retrievedObject = localStorage.getItem('mountain-complex-object');
+      var retrievedvar = JSON.parse(JSON.parse(retrievedObject));
+      // mountain location
+      obj_loc = retrievedvar.location;
+      obj_name = retrievedvar.name;
+      obj_height = retrievedvar.height;
+      // convert to arry for filter
+      var myArray = Object.keys(obj_loc).map(key => obj_loc[key]);
+      var ary_name = Object.keys(obj_name).map(key => obj_name[key]);
+      var ary_height = Object.keys(obj_height).map(key => obj_height[key]);
+      
+      var all_data = [];
+      var all_labels = [];
+      // filter location by location name and return index
+      if(val_loc == "Top 20")
+      {
+        // all_data = ary_height;
+        // all_labels = ary_name;
+        // Get the top 20 height from ary_height
+        const mappedArray = ary_height.map((value, index) => ({ value, index }));
+        // Sort the array in descending order
+        const sortedArray = mappedArray.sort((a, b) => b.value - a.value);
+        // Get the top 20 values with their original indices
+        const top20 = sortedArray.slice(0, 20).map(item => item.index);   
+        //const all_data = sortedArray.slice(0, 20);
+        top20.forEach(function(value) {
+          all_data.push(ary_height[value]);
+          all_labels.push(ary_name[value]);
+        });
+      }
+      else 
+      {
+        myArray.filter(function(element, index) 
+        {
+            if (element== val_loc) {
+                this.indexes.push(index);
+                return true;
+            }
+        },data);      
+        // filter by selected location      
+        data.indexes.forEach(function(value) {
+            all_data.push(ary_height[value]);
+            all_labels.push(ary_name[value]);
+        });
+      }
+      console.log(all_labels);
+      return {all_labels, all_data};
+  }
+
+  // // Draw Chart by selected location
+  function get_selected_location(item) {
+    var selectedItem = item.options[item.selectedIndex];
+    var ctx = document.getElementById("myAreaChart");
+    mvalue = selectedItem.value;
+    return mvalue;
+  }
+
+  function get_chart_wAll() {
+    my_chart_data = get_location_data('Top 20');
+    myChartDisp(my_chart_data);
+  }
+
+  function get_chart_wlocation(item) {
+    mvalue = get_selected_location(item);
+    my_chart_data = get_location_data(mvalue);
+    myFunction(item, my_chart_data);
+  }
+</script>
+
+<script>
+    //populate combo box html 
+    $(document).ready(function() {
+    // Executes when the HTML document is loaded and the DOM is ready    
+    loadDoc();    
+    //Run Default Chart Function after Combo box is set
+    get_chart_wAll();
+    });
+</script>
+</body>
+</html>
